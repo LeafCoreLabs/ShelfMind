@@ -1,0 +1,154 @@
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.login-theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 30;
+}
+
+.login-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  position: relative;
+  background: var(--bg-alt);
+  overflow: hidden;
+}
+
+.login-right-glow {
+  position: absolute;
+  top: 20%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107, 147, 255, 0.10) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.login-right-inner {
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  z-index: 1;
+}
+
+.login-right-header {
+  margin-bottom: 24px;
+}
+
+.login-right-inner h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.login-sub {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.login-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 380px;
+}
+
+/* Skeleton loader */
+.login-skeleton {
+  background: var(--bg);
+}
+
+.login-skeleton-left,
+.login-skeleton-right {
+  flex: 1;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-skeleton-left {
+  background: var(--brand-panel-bg);
+}
+
+.login-skeleton-right {
+  background: var(--bg-alt);
+  align-items: center;
+  justify-content: center;
+}
+
+.login-skeleton-logo,
+.login-skeleton-line,
+.login-skeleton-card,
+.login-skeleton-role {
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+.login-skeleton-logo {
+  width: 180px;
+  height: 52px;
+  border-radius: 16px;
+  margin-bottom: 12px;
+}
+
+.login-skeleton-line.lg { width: 90%; height: 34px; }
+.login-skeleton-line.md { width: 75%; height: 16px; }
+.login-skeleton-line.sm { width: 160px; height: 24px; }
+.login-skeleton-line.xs { width: 220px; height: 14px; }
+
+.login-skeleton-card {
+  width: 100%;
+  max-width: 460px;
+  height: 72px;
+}
+
+.login-skeleton-role {
+  width: 100%;
+  max-width: 380px;
+  height: 120px;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+@media (max-width: 900px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .brand-panel {
+    min-height: 40vh;
+  }
+
+  .login-skeleton {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-skeleton-logo,
+  .login-skeleton-line,
+  .login-skeleton-card,
+  .login-skeleton-role {
+    animation: none;
+    opacity: 0.5;
+  }
+}

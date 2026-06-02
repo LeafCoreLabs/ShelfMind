@@ -1,0 +1,98 @@
+Create a desktop login screen frame 1440×900px, split 50/50 horizontal, dark glassmorphism UI.
+
+FONT: DM Sans only (Google Fonts). Weights 400, 500, 600, 700, 800.
+
+COLOR TOKENS:
+- bg #0B1020
+- bg-alt #0E1426
+- text #E7EBF5
+- text-muted #9AA3B8
+- accent #6B93FF
+- accent-glow rgba(107,147,255,0.40)
+- surface rgba(255,255,255,0.05)
+- glass-border rgba(255,255,255,0.10)
+- glass-highlight rgba(255,255,255,0.06)
+- danger #F87171
+
+GLASS CARD STYLE (reusable component):
+- Fill: rgba(255,255,255,0.05)
+- Border: 1px solid rgba(255,255,255,0.10)
+- Corner radius: 16px
+- Background blur: 18px
+- Inner top highlight: inset 0 1px 0 rgba(255,255,255,0.06)
+- Drop shadow: 0 8px 32px rgba(0,0,0,0.45)
+
+=== LEFT PANEL (720×900) — Brand Hero ===
+Background: linear gradient 160deg, #0D1430 0% → #0A0F22 55% → #0B0A1C 100%
+Padding: 48px 40px, content vertically centered, max content width 460px.
+
+Background layers (behind content):
+1) Aurora blob 1: 360×360 circle, radial #4F7CFF → transparent, blur 90px, opacity 55%, position top-left (-6%, -8%)
+2) Aurora blob 2: 300×300 circle, radial #8B5CF6 → transparent, blur 90px, opacity 55%, bottom-right area
+3) Aurora blob 3: 240×240 circle, radial #22D3EE → transparent, blur 90px, opacity 35%, center-right
+4) Dot grid overlay: 1px dots rgba(255,255,255,0.06), 26px spacing, radial fade mask center
+
+Content stack (top to bottom, 28px gaps between major sections):
+
+A) Logo lockup row (gap 12px):
+- Logo chip 52×52, radius 16px, gradient 135deg #6B93FF → #8B5CF6, text "SM" #0B1020, DM Sans 800, 17px, shadow 0 8px 28px rgba(107,147,255,0.40)
+- Wordmark "SelfMind" 22px, weight 700, letter-spacing -0.02em, color #E7EBF5
+
+B) Headline H1: "Your next week's bestseller, predicted today"
+- 34px, weight 700, line-height 1.15, letter-spacing -0.03em, color #E7EBF5
+- Word "bestseller" gradient text: 120deg #6B93FF → #A78BFA 60% → #22D3EE
+
+C) Description paragraph:
+"Hyperlocal demand prediction for retail and D2C — fusing transaction history, weather, local events, and social trends into precise stocking calls."
+- 15px, weight 400, line-height 1.65, color #9AA3B8
+
+D) 3 feature glass cards, vertical stack, gap 12px, each card:
+- Glass card style, padding 14px 16px, horizontal layout gap 14px
+- Left: skeuo badge 40×40, radius 12px, gradient 145deg rgba(255,255,255,0.12) → rgba(255,255,255,0.03), border 1px glass-border, inset highlight + shadow 0 4px 12px rgba(0,0,0,0.35), emoji centered 18px
+- Right text:
+  Card1 icon 🎯 | title "SKU-level predictions" 14px/600 #E7EBF5 | sub "Exact stocking recommendations with confidence scores" 12px #9AA3B8
+  Card2 icon 📊 | title "Buying-trend heatmaps" | sub "Peak purchase windows animated by category"
+  Card3 icon 💬 | title "Natural-language queries" | sub "Ask what to stock — AI answers with rationale"
+
+E) 3 stat pills row, gap 12px, equal width, glass card, padding 14px, center aligned:
+- Pill1: "340%" gradient text 120deg #6B93FF→#A78BFA, 20px/700 | label "demand lift detected" 11px #9AA3B8
+- Pill2: "SKU" same gradient style | label "level forecasts"
+- Pill3: "AI" same gradient style | label "powered queries"
+
+F) Badge pill "Team Toxicos.exe":
+- inline pill, padding 6px 14px, radius 999px, 12px #9AA3B8, glass fill + border, blur 10px
+
+=== RIGHT PANEL (720×900) — Login ===
+Background: solid #0E1426 + radial glow circle at 70% 20%, rgba(107,147,255,0.10) fading to transparent 55%
+Padding 32px, content centered, max width 420px.
+
+Header:
+- "Welcome back" 24px/700 #E7EBF5, margin bottom 6px
+- "Select your role and sign in" 14px #9AA3B8, margin bottom 24px
+
+Two role cards, vertical stack, gap 16px, max width 380px:
+
+CARD 1 — Admin (SELECTED/EXPANDED STATE):
+- Glass card, padding 20px, border 2px solid #6B93FF, extra glow shadow 0 8px 32px rgba(107,147,255,0.40)
+- Header row gap 14px:
+  - Badge 40×40 with ⚙ emoji (skeuo badge style)
+  - Title "Admin" 16px/600 #E7EBF5
+  - Subtitle "Platform management & onboarding" 13px #9AA3B8
+- Form below (gap 12px, top margin 16px):
+  - Email input: full width, height ~42px, padding 10px 14px, radius 10px, fill rgba(255,255,255,0.05), border 1px rgba(255,255,255,0.10), text 14px #E7EBF5, placeholder "Email" #9AA3B8, blur 8px
+  - Password input: same style, placeholder "Password"
+  - Primary button "Sign in": full width, height ~42px, padding 10px 20px, radius 12px, gradient 180deg #7BA0FF → #6B93FF, text #0B1020 14px/600, inset top highlight rgba(255,255,255,0.35), shadow 0 6px 20px rgba(107,147,255,0.40)
+
+CARD 2 — Store Owner (COLLAPSED STATE):
+- Glass card, padding 20px, border 2px transparent (default glass border 1px)
+- Header row:
+  - Badge 40×40 with 🏪 emoji
+  - Title "Store Owner" 16px/600
+  - Subtitle "Dashboard, forecasts & inventory" 13px #9AA3B8
+- Hint text centered: "Click to sign in as store owner" 12px #9AA3B8, top margin 12px
+
+Create 2 variants on one frame:
+Variant A = Admin selected + expanded form
+Variant B = Store Owner selected + expanded form (same structure, icon 🏪, email owner@shelfmind.com placeholder)
+
+No light mode. No extra decoration. Match spacing and typography exactly.

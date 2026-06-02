@@ -1,0 +1,211 @@
+@import "../admin/admin-theme.css";
+@import "../admin/AdminPages.css";
+
+.store-page-header {
+  margin-bottom: 1.25rem;
+}
+
+.store-table-wrap {
+  overflow-x: auto;
+}
+
+.row-warning td {
+  background: rgba(255, 180, 0, 0.08);
+}
+
+.local-signal-banner {
+  background: rgba(79, 124, 255, 0.12);
+  border: 1px solid rgba(79, 124, 255, 0.25);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.local-signal-banner strong {
+  font-size: 0.95rem;
+}
+
+.local-signal-banner span {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.urgent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.urgent-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.urgent-list li:last-child {
+  border-bottom: none;
+}
+
+.urgent-list a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.urgent-list a:hover {
+  text-decoration: underline;
+}
+
+.quick-ask-form {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.quick-ask-form .admin-input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.purchase-history {
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+}
+
+.purchase-history ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.reorder-hint {
+  font-size: 0.8rem;
+  color: var(--warning, #f0a020);
+}
+
+.pos-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pos-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.pos-cart-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pos-cart-row select.admin-input {
+  flex: 1;
+  min-width: 0;
+  text-overflow: ellipsis;
+}
+
+.pos-cart-row .admin-input[type="number"] {
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.pos-cart-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.billing-actions-col {
+  min-width: 200px;
+  white-space: nowrap;
+}
+
+.billing-actions-row {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cell-wrap {
+  word-break: break-word;
+  max-width: 280px;
+}
+
+.gst-mono {
+  font-family: ui-monospace, "Cascadia Code", monospace;
+  word-break: break-all;
+}
+
+.tax-invoice-print {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tax-invoice-print .store-table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.tax-invoice-print .admin-table {
+  min-width: 420px;
+}
+
+.tax-invoice-totals {
+  margin-top: 1rem;
+  text-align: right;
+  font-size: 0.9rem;
+}
+
+.customer-add-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.customer-add-row label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  flex: 1;
+  min-width: 140px;
+}
+
+.reports-date-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.reports-date-row .admin-input[type="date"] {
+  flex: 0 1 auto;
+  min-width: 160px;
+}
+

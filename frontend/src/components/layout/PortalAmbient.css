@@ -1,0 +1,58 @@
+.portal-ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.portal-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+
+.portal-ambient-admin .portal-orb-1 {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  right: -80px;
+  background: radial-gradient(circle, var(--portal-glow-1, rgba(107, 147, 255, 0.25)) 0%, transparent 70%);
+}
+
+.portal-ambient-admin .portal-orb-2 {
+  width: 360px;
+  height: 360px;
+  bottom: 10%;
+  left: -60px;
+  background: radial-gradient(circle, var(--portal-glow-2, rgba(129, 140, 248, 0.2)) 0%, transparent 70%);
+}
+
+.portal-ambient-store .portal-orb-1 {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  right: -60px;
+  background: radial-gradient(circle, var(--portal-glow-1, rgba(245, 158, 11, 0.18)) 0%, transparent 70%);
+}
+
+.portal-ambient-store .portal-orb-2 {
+  width: 380px;
+  height: 380px;
+  bottom: 5%;
+  left: -80px;
+  background: radial-gradient(circle, var(--portal-glow-2, rgba(52, 211, 153, 0.15)) 0%, transparent 70%);
+}
+
+.portal-cursor-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--portal-cursor, rgba(107, 147, 255, 0.06)) 0%, transparent 55%);
+  transition: left 0.15s ease-out, top 0.15s ease-out;
+}

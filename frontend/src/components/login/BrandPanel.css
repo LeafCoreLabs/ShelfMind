@@ -1,0 +1,302 @@
+.brand-panel {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 48px 40px;
+  background: var(--brand-panel-bg);
+  overflow: hidden;
+}
+
+.brand-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.brand-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  animation: particle-drift 18s ease-in-out infinite;
+}
+
+.brand-particle-1 { top: 12%; left: 18%; animation-delay: 0s; }
+.brand-particle-2 { top: 28%; left: 72%; animation-delay: -2s; }
+.brand-particle-3 { top: 55%; left: 35%; animation-delay: -4s; }
+.brand-particle-4 { top: 78%; left: 60%; animation-delay: -6s; }
+.brand-particle-5 { top: 40%; left: 8%; animation-delay: -8s; }
+.brand-particle-6 { top: 65%; left: 85%; animation-delay: -10s; }
+.brand-particle-7 { top: 18%; left: 48%; animation-delay: -12s; }
+.brand-particle-8 { top: 88%; left: 25%; animation-delay: -14s; }
+
+@keyframes particle-drift {
+  0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+  25% { transform: translate(12px, -18px); opacity: 0.5; }
+  50% { transform: translate(-8px, -32px); opacity: 0.3; }
+  75% { transform: translate(16px, -12px); opacity: 0.45; }
+}
+
+.aurora {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.55;
+  pointer-events: none;
+  animation: aurora-float 8s ease-in-out infinite;
+}
+
+.aurora-1 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, #4f7cff, transparent 70%);
+  top: -8%;
+  left: -6%;
+  animation-delay: 0s;
+}
+
+.aurora-2 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #8b5cf6, transparent 70%);
+  bottom: 5%;
+  right: 5%;
+  animation-delay: -2.5s;
+}
+
+.aurora-3 {
+  width: 240px;
+  height: 240px;
+  background: radial-gradient(circle, #22d3ee, transparent 70%);
+  top: 40%;
+  right: 8%;
+  opacity: 0.35;
+  animation-delay: -5s;
+}
+
+@keyframes aurora-float {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(20px, 30px); }
+  66% { transform: translate(-15px, 15px); }
+}
+
+.brand-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 70% 70% at center, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, black 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.brand-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  color: var(--text);
+}
+
+.brand-lockup {
+  margin-bottom: 28px;
+}
+
+.brand-tagline {
+  margin: 10px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+
+.brand-headline-wrap {
+  margin-bottom: 28px;
+}
+
+.brand-headline {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.brand-headline .grad {
+  background: linear-gradient(120deg, #6b93ff, #a78bfa 60%, #22d3ee);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-desc {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin: 0 0 28px;
+}
+
+.brand-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.brand-suite-rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-left: 4px;
+}
+
+.brand-suite-line {
+  position: absolute;
+  left: 27px;
+  top: 28px;
+  bottom: 28px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(107, 147, 255, 0.5), rgba(167, 139, 250, 0.3), rgba(34, 211, 238, 0.2));
+  border-radius: 2px;
+}
+
+.suite-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.suite-step:hover {
+  transform: translateX(4px);
+  border-color: rgba(107, 147, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.suite-step-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  border-radius: 12px;
+  background: rgba(107, 147, 255, 0.12);
+  border: 1px solid rgba(107, 147, 255, 0.2);
+}
+
+.suite-step-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.suite-step-text small {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.brand-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.brand-highlight-chip {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.feature-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(107, 147, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.feature-card:hover .feature-icon {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.feature-text strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.feature-text small {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .brand-panel {
+    padding: 32px 24px;
+  }
+
+  .brand-headline {
+    font-size: 26px;
+  }
+
+  .brand-highlights {
+    flex-wrap: wrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora,
+  .brand-particle {
+    animation: none;
+  }
+
+  .feature-card:hover,
+  .suite-step:hover {
+    transform: none;
+  }
+
+  .feature-card:hover .feature-icon {
+    transform: none;
+  }
+}

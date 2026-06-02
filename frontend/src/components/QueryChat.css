@@ -1,0 +1,142 @@
+.query-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.query-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: -0.5rem;
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.suggestion-chip {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: none;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.portal-store .suggestion-chip.admin-suggestion-chip {
+  background: rgba(0, 0, 0, 0.2);
+  color: var(--text-muted);
+  border: 1px solid var(--glass-border);
+}
+
+.portal-store .suggestion-chip.admin-suggestion-chip:hover {
+  color: var(--text);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.query-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.query-form input {
+  flex: 1;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  font-size: 0.9rem;
+}
+
+.query-form input:focus {
+  outline: 2px solid var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.query-error {
+  color: var(--danger);
+  font-size: 0.85rem;
+}
+
+.recommendations {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.rec-card {
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+}
+
+.rec-increase {
+  background: var(--success-soft);
+  border-color: rgba(52, 211, 153, 0.35);
+}
+
+.rec-decrease {
+  background: var(--danger-soft);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.rec-hold {
+  background: var(--warning-soft);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.rec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.rec-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.rec-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.rec-increase .rec-badge { color: var(--success); }
+.rec-decrease .rec-badge { color: var(--danger); }
+
+.rec-rationale {
+  font-size: 0.875rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.rec-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.rec-action {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.rec-sku {
+  font-family: ui-monospace, "Cascadia Code", monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.rec-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}

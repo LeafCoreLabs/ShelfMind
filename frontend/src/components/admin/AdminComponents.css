@@ -1,0 +1,235 @@
+.admin-map {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.admin-map-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.5;
+}
+
+.admin-map-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+}
+
+.admin-map-pin-dot {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 0 auto 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.admin-map-pin small {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.anomaly-card {
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.anomaly-card.severity-critical {
+  border-color: rgba(248, 113, 113, 0.45);
+}
+
+.anomaly-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.severity-pill {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.severity-pill.critical {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.severity-pill.warning {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.anomaly-card h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.anomaly-cause {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.anomaly-action {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-top: 0.35rem;
+}
+
+.anomaly-card .up { color: var(--success); }
+.anomaly-card .down { color: var(--danger); }
+
+.health-score {
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.health-score.good { background: var(--success-soft); color: var(--success); }
+.health-score.mid { background: var(--warning-soft); color: var(--warning); }
+.health-score.low { background: var(--danger-soft); color: var(--danger); }
+
+.block-muted {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.alert-rule-form {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.alert-rule-form h4 {
+  margin: 0;
+}
+
+.admin-copilot {
+  padding: 1.25rem;
+}
+
+.admin-copilot-form {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.admin-copilot-form .glass-input {
+  flex: 1;
+}
+
+.copilot-answer {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.copilot-insight {
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.copilot-rec {
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-muted {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.signal-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.signal-chip {
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.signal-chip strong {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: capitalize;
+}
+
+.signal-chip small {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.admin-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .admin-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.glass-panel-inner {
+  padding: 1.25rem;
+}
+
+.feature-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.restock-table-wrap {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.audit-event {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.audit-event strong {
+  font-size: 0.85rem;
+}
+
+.audit-event small {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
