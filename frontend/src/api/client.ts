@@ -34,6 +34,8 @@ export function clearAuth() {
   localStorage.removeItem(USER_KEY);
 }
 
+const API_BASE = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, "") ?? "";
+
 export async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const token = getToken();
   const headers: Record<string, string> = {
@@ -46,7 +48,7 @@ export async function request<T>(path: string, options?: RequestInit): Promise<T
     }
   }
 
-  const res = await fetch(`/api${path}`, { ...options, headers });
+  const res = await fetch(`${API_BASE}/api${path}`, { ...options, headers });
   if (res.status === 401) {
     clearAuth();
     if (!window.location.pathname.startsWith("/login")) {

@@ -1,5 +1,6 @@
 from functools import lru_cache
 
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -31,6 +32,14 @@ class Settings(BaseSettings):
     jwt_secret: str = ""
     access_token_expire_minutes: int = 480
     algorithm: str = "HS256"
+
+    @field_validator("database_url", mode="before")
+    @classmethod
+    def normalize_async_database_url(cls, v: str) -> str:
+        """Render Postgres provides postgresql:// — SQLAlchemy async needs asyncpg driver."""
+        if isinstance(v, str) and v.startswith("postgresql://"):
+            return v.replace("postgresql://", "postgresql+asyncpg://", 1)
+        return v
 
     @property
     def effective_jwt_secret(self) -> str:
