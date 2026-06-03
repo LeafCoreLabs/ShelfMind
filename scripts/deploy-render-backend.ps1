@@ -9,7 +9,7 @@ param(
     [Parameter(Position = 0)]
     [ValidateSet("login", "push", "deploy", "status", "logs")]
     [string]$Action = "deploy",
-    [string]$ServiceName = "shelfmind-api"
+    [string]$ServiceName = "ShelfMind"
 )
 
 $ErrorActionPreference = "Stop"
@@ -41,7 +41,7 @@ function Get-ServiceId {
         $id = if ($item.service) { $item.service.id } else { $item.id }
         if ($name -eq $ServiceName) { return $id }
     }
-    Write-Error "Service '$ServiceName' not found. Check Render dashboard name."
+    Write-Error "Service '$ServiceName' not found. Available web services:`n$($json | ForEach-Object { $n = if ($_.service) { $_.service.name } else { $_.name }; if ($n) { '  - ' + $n } } | Out-String)"
 }
 
 switch ($Action) {
@@ -86,6 +86,8 @@ switch ($Action) {
         Write-Host "Redeploying $ServiceName ($id)..." -ForegroundColor Cyan
         & $Render deploys create $id --wait -o json --confirm
         Write-Host "Done. Health check:" -ForegroundColor Green
-        Write-Host "  https://$ServiceName.onrender.com/api/health"
+        $url = (& $Render services list -o json --confirm | ConvertFrom-Json | ForEach-Object { if ($_.service.name -eq $ServiceName) { $_.service.serviceDetails.url } } | Select-Object -First 1)
+        if (-not $url) { $url = "https://$ServiceName.onrender.com" }
+        Write-Host "  $url/api/health"
     }
 }
