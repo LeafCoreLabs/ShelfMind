@@ -18,15 +18,14 @@ $Render = Join-Path $Root "scripts\render.ps1"
 Set-Location $Root
 
 function Invoke-Render {
-    param([string[]]$Args)
-    & $Render @Args
+    param([string[]]$RenderArgs)
+    & $Render @RenderArgs
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 }
 
 function Require-Auth {
-    try {
-        Invoke-Render @("-o", "text", "--confirm", "whoami") | Out-Null
-    } catch {
+    & $Render whoami -o text --confirm 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) {
         Write-Host "Not logged in. Run:" -ForegroundColor Yellow
         Write-Host "  .\scripts\deploy-render-backend.ps1 login" -ForegroundColor White
         exit 1
@@ -34,7 +33,9 @@ function Require-Auth {
 }
 
 function Get-ServiceId {
-    $json = Invoke-Render @("services", "list", "-o", "json", "--confirm") | ConvertFrom-Json
+    $raw = & $Render services list -o json --confirm
+    if ($LASTEXITCODE -ne 0) { Write-Error "Could not list services"; exit 1 }
+    $json = $raw | ConvertFrom-Json
     foreach ($item in $json) {
         $name = if ($item.service) { $item.service.name } else { $item.name }
         $id = if ($item.service) { $item.service.id } else { $item.id }
@@ -45,9 +46,9 @@ function Get-ServiceId {
 
 switch ($Action) {
     "login" {
-        Invoke-Render @("login")
-        Invoke-Render @("workspace", "set")
-        Invoke-Render @("whoami", "-o", "text", "--confirm")
+        & $Render login
+        & $Render workspace set
+        & $Render whoami -o text --confirm
     }
     "push" {
         Write-Host "Staging deploy fixes..." -ForegroundColor Cyan
@@ -69,21 +70,21 @@ switch ($Action) {
     }
     "status" {
         Require-Auth
-        Invoke-Render @("services", "list", "-o", "text", "--confirm")
+        & $Render services list -o text --confirm
         $id = Get-ServiceId
-        Invoke-Render @("deploys", "list", $id, "-o", "text", "--confirm")
+        & $Render deploys list $id -o text --confirm
     }
     "logs" {
         Require-Auth
         $id = Get-ServiceId
-        Invoke-Render @("logs", $id, "--tail", "--confirm")
+        & $Render logs $id --tail --confirm
     }
     "deploy" {
         Require-Auth
-        Invoke-Render @("blueprints", "validate", "render-backend.yaml")
+        & $Render blueprints validate render-backend.yaml
         $id = Get-ServiceId
         Write-Host "Redeploying $ServiceName ($id)..." -ForegroundColor Cyan
-        Invoke-Render @("deploys", "create", $id, "--wait", "-o", "json", "--confirm")
+        & $Render deploys create $id --wait -o json --confirm
         Write-Host "Done. Health check:" -ForegroundColor Green
         Write-Host "  https://$ServiceName.onrender.com/api/health"
     }
