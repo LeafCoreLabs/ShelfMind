@@ -14,7 +14,8 @@ RUN pip install --no-cache-dir -r requirements-render.txt \
 COPY . .
 
 RUN sed -i 's/\r$//' /app/entrypoint.sh && chmod +x /app/entrypoint.sh \
-    && sed -i 's/\r$//' /app/celery-entrypoint.sh && chmod +x /app/celery-entrypoint.sh
+    && sed -i 's/\r$//' /app/celery-entrypoint.sh && chmod +x /app/celery-entrypoint.sh \
+    && sed -i 's/\r$//' /app/start.sh && chmod +x /app/start.sh
 
 EXPOSE 8000
 

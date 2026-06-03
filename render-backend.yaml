@@ -10,7 +10,8 @@ services:
     region: oregon
     rootDir: backend
     healthCheckPath: /api/health
-    dockerCommand: gunicorn app.main:app -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT -w 1 --timeout 120
+    dockerCommand: /app/entrypoint.sh gunicorn app.main:app -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT -w 1 --timeout 120
+    preDeployCommand: alembic upgrade head && python -m app.seed
     envVars:
       - key: DATABASE_URL
         fromDatabase:
