@@ -20,4 +20,9 @@ alembic upgrade head
 echo "Seeding demo data if needed..."
 python -m app.seed
 
+if [ "$EMBED_CELERY" = "true" ] || [ "$EMBED_CELERY" = "1" ]; then
+  echo "Starting embedded Celery worker + beat (free-tier mode)..."
+  celery -A app.celery_app worker -B -l info --concurrency=1 &
+fi
+
 exec "$@"

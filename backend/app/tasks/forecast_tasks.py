@@ -2,14 +2,11 @@ import csv
 import io
 from datetime import datetime, timezone
 
-import boto3
-from botocore.client import Config
-
 from app.celery_app import celery_app
-from app.config import get_settings
 from app.db.session import SyncSessionLocal
 from app.services.collaborative import generate_peer_benchmarks
 from app.services.forecast import run_all_forecasts
+from app.services.s3_reports import upload_report_csv
 from app.models.store import Forecast, Product, Transaction
 from sqlalchemy import func, select
 
@@ -57,26 +54,8 @@ def export_scheduled_reports() -> dict:
         for row in rows:
             writer.writerow(list(row))
 
-        settings = get_settings()
-        s3 = boto3.client(
-            "s3",
-            endpoint_url=settings.s3_endpoint,
-            aws_access_key_id=settings.s3_access_key,
-            aws_secret_access_key=settings.s3_secret_key,
-            config=Config(signature_version="s3v4"),
-        )
         key = f"reports/weekly-{datetime.now(timezone.utc).strftime('%Y%m%d')}.csv"
-        s3.put_object(
-            Bucket=settings.s3_bucket,
-            Key=key,
-            Body=output.getvalue().encode(),
-            ContentType="text/csv",
-        )
-        url = s3.generate_presigned_url(
-            "get_object",
-            Params={"Bucket": settings.s3_bucket, "Key": key},
-            ExpiresIn=3600,
-        )
-        return {"key": key, "url": url}
+        result = upload_report_csv(key, output.getvalue().encode())
+        return {"key": result["key"], "url": result["download_url"], "storage": result["storage"]}
     finally:
         session.close()

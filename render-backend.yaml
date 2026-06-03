@@ -1,6 +1,6 @@
-# ShelfMind — Render Blueprint
-# Deploy: Render Dashboard → New → Blueprint → connect LeafCoreLabs/ShelfMind
-# Docs: https://render.com/docs/infrastructure-as-code
+# ShelfMind — Backend-only Render Blueprint (free tier)
+# Use when the frontend is already deployed elsewhere.
+# Deploy: Render Dashboard → New → Blueprint → select this file or repo with render-backend.yaml
 
 services:
   - type: web
@@ -47,25 +47,6 @@ services:
         value: "true"
       - key: S3_ENABLED
         value: "false"
-
-  - type: web
-    name: shelfmind-web
-    runtime: static
-    plan: free
-    region: oregon
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: shelfmind-api
-          envVarKey: RENDER_EXTERNAL_URL
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
 
   - type: keyvalue
     name: shelfmind-redis

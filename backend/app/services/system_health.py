@@ -45,15 +45,17 @@ def collect_system_health() -> dict:
         return {"connected": True}
 
     def minio_check():
+        if not settings.s3_enabled:
+            return {"enabled": False, "note": "S3 disabled — reports download inline"}
         s3 = boto3.client(
             "s3",
-            endpoint_url=settings.s3_endpoint,
+            endpoint_url=settings.s3_endpoint or None,
             aws_access_key_id=settings.s3_access_key,
             aws_secret_access_key=settings.s3_secret_key,
             config=Config(signature_version="s3v4"),
         )
         s3.head_bucket(Bucket=settings.s3_bucket)
-        return {"bucket": settings.s3_bucket}
+        return {"bucket": settings.s3_bucket, "enabled": True}
 
     def groq_check():
         return {
@@ -75,7 +77,17 @@ def collect_system_health() -> dict:
 
     checks.append(_check("postgresql", postgres))
     checks.append(_check("redis", redis_check))
-    checks.append(_check("minio", minio_check))
+    if settings.s3_enabled:
+        checks.append(_check("minio", minio_check))
+    else:
+        checks.append(
+            {
+                "name": "minio",
+                "status": "healthy",
+                "latency_ms": 0,
+                "detail": {"enabled": False, "note": "S3 disabled — inline report downloads"},
+            }
+        )
     checks.append(_check("celery", celery_check))
     checks.append(
         {

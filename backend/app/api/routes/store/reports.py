@@ -2,14 +2,12 @@ import csv
 import io
 from datetime import datetime, timezone
 
-import boto3
-from botocore.client import Config
 from fastapi import APIRouter, Depends, File, UploadFile
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.config import get_settings
 from app.core.deps import get_owner_store_id, require_store_owner
+from app.services.s3_reports import upload_report_csv
 from app.db.session import get_db
 from app.models.store import Forecast, Product, Transaction
 
@@ -31,18 +29,8 @@ async def export_report(db: AsyncSession = Depends(get_db), store_id: int = Depe
     writer.writerow(["sku", "product_name", "category", "forecast_date", "predicted_qty", "confidence"])
     for f, p in rows:
         writer.writerow([p.sku, p.name, p.category, f.forecast_date, f.predicted_qty, f.confidence])
-    settings = get_settings()
-    s3 = boto3.client(
-        "s3",
-        endpoint_url=settings.s3_endpoint,
-        aws_access_key_id=settings.s3_access_key,
-        aws_secret_access_key=settings.s3_secret_key,
-        config=Config(signature_version="s3v4"),
-    )
     key = f"reports/store-{store_id}-{datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')}.csv"
-    s3.put_object(Bucket=settings.s3_bucket, Key=key, Body=output.getvalue().encode(), ContentType="text/csv")
-    url = s3.generate_presigned_url("get_object", Params={"Bucket": settings.s3_bucket, "Key": key}, ExpiresIn=3600)
-    return {"key": key, "download_url": url}
+    return upload_report_csv(key, output.getvalue().encode())
 
 
 @router.post("/reports/import-csv")

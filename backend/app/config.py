@@ -17,6 +17,8 @@ class Settings(BaseSettings):
     s3_access_key: str = "minioadmin"
     s3_secret_key: str = "minioadmin"
     s3_bucket: str = "shelfmind-reports"
+    s3_enabled: bool = True
+    embed_celery: bool = False
 
     openai_api_key: str = ""
     groq_api_key: str = ""

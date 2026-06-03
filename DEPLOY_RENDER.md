@@ -43,9 +43,11 @@ Set `RENDER_API_KEY` for CI/CD (GitHub Actions example in Render docs).
 ## Free tier limits
 
 - API sleeps after ~15 min idle (~1 min cold start)
-- Postgres free DB expires after 30 days
-- Celery workers not included (background jobs disabled)
-- MinIO/S3 report export not configured (use DB reports in chat)
+- Postgres free DB expires after 90 days
+- Celery runs **inside** the API container (`EMBED_CELERY=true`) — no paid background worker needed
+- Report export uses inline CSV when `S3_ENABLED=false` (optional Cloudflare R2 for S3 storage)
+
+For **backend-only** deploy when frontend is already live, see [DEPLOY_BACKEND_FREE.md](./DEPLOY_BACKEND_FREE.md) and `render-backend.yaml`.
 
 ## Redeploy
 
