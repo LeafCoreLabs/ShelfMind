@@ -34,6 +34,10 @@ class Settings(BaseSettings):
     jwt_secret: str = ""
     access_token_expire_minutes: int = 480
     algorithm: str = "HS256"
+    cors_origins: str = (
+        "http://localhost,http://127.0.0.1,http://localhost:5173,"
+        "https://shelf-mind-mu.vercel.app,https://shelfmind-web.onrender.com"
+    )
 
     @field_validator("database_url", mode="before")
     @classmethod
@@ -72,6 +76,13 @@ class Settings(BaseSettings):
         if self.openai_api_key:
             return "openai"
         return "demo"
+
+    @property
+    def cors_origin_list(self) -> list[str]:
+        raw = self.cors_origins.strip()
+        if raw == "*":
+            return ["*"]
+        return [origin.strip() for origin in raw.split(",") if origin.strip()]
 
 
 @lru_cache

@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.api.routes import router
+from app.config import get_settings
 
 logging.basicConfig(
     level=logging.INFO,
@@ -22,10 +23,13 @@ app = FastAPI(
     openapi_url="/api/openapi.json",
 )
 
+_settings = get_settings()
+# JWT is sent via Authorization header, not cookies — credentials must stay False
+# when using wildcard origins. Explicit origins are configured via CORS_ORIGINS.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=_settings.cors_origin_list,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
